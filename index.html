@@ -1,200 +1,687 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Asish K Sasidharan | Ocean Scientist</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Asish K Sasidharan | Ocean Scientist</title>
+  <meta name="description" content="Oceanographer specializing in physical oceanography, machine learning, and ocean observations at INCOIS Hyderabad">
+  <meta name="author" content="Asish K Sasidharan">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ocean-deep:    #050e1a;
+      --ocean-mid:     #071828;
+      --ocean-surface: #0b2340;
+      --teal:          #00c6ae;
+      --teal-dim:      #007d6e;
+      --gold:          #e8c97a;
+      --text-primary:  #e8f0f8;
+      --text-muted:    #7a9bb5;
+      --border:        rgba(0,198,174,0.18);
+      --card-bg:       rgba(11,35,64,0.65);
+      --font-display:  'Cormorant Garamond', Georgia, serif;
+      --font-mono:     'DM Mono', monospace;
+      --font-body:     'Outfit', sans-serif;
+    }
 
-    <meta name="description" content="Oceanographer specializing in physical oceanography, machine learning, and ocean observations">
-    <meta name="author" content="Asish K Sasidharan">
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <link rel="stylesheet" href="css/kube.min.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/custom.min.css">
-    <link rel="shortcut icon" href="img/favicon.png">
+    html { scroll-behavior: smooth; }
 
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display+SC:700|Lato:400,700" rel="stylesheet">
+    body {
+      background-color: var(--ocean-deep);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
 
-    <style>
-        .intro h1:before {
-            content: 'ASISH';
-        }
-        .highlight {
-            font-weight: 700;
-            color: #1e6fa3;
-        }
-    </style>
+    /* ── BACKGROUND ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: -2;
+      background:
+        radial-gradient(ellipse 80% 60% at 10% 20%, rgba(0,100,120,0.22) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 90% 80%, rgba(0,50,100,0.28) 0%, transparent 55%),
+        linear-gradient(180deg, #050e1a 0%, #071828 60%, #050e1a 100%);
+    }
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: -1;
+      background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(0,198,174,0.03) 60px, rgba(0,198,174,0.03) 61px),
+        repeating-linear-gradient(90deg, transparent, transparent 80px, rgba(0,198,174,0.025) 80px, rgba(0,198,174,0.025) 81px);
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      backdrop-filter: blur(16px) saturate(1.4);
+      background: rgba(5,14,26,0.82);
+      border-bottom: 1px solid var(--border);
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      display: flex; align-items: center; justify-content: space-between;
+      height: 62px;
+    }
+    .nav-logo {
+      font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.22em;
+      color: var(--teal); text-transform: uppercase; text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-muted); text-decoration: none; transition: color 0.25s;
+    }
+    .nav-links a:hover { color: var(--teal); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 8rem clamp(1.5rem, 8vw, 8rem) 5rem;
+      position: relative;
+    }
+    .hero-tag {
+      font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.3em;
+      color: var(--teal); text-transform: uppercase; margin-bottom: 1.4rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .hero-tag::before {
+      content: ''; display: block; width: 32px; height: 1px; background: var(--teal);
+    }
+    .hero h1 {
+      font-family: var(--font-display); font-size: clamp(3.5rem, 9vw, 7.5rem);
+      font-weight: 300; line-height: 1.05; letter-spacing: -0.01em;
+      color: var(--text-primary); margin-bottom: 0.3rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--teal); }
+    .hero-subtitle {
+      font-family: var(--font-display); font-size: clamp(1.1rem, 2.5vw, 1.55rem);
+      font-weight: 300; font-style: italic; color: var(--text-muted);
+      margin-bottom: 2.5rem; letter-spacing: 0.02em;
+    }
+    .hero-meta {
+      display: flex; gap: 2rem; flex-wrap: wrap;
+    }
+    .hero-pill {
+      font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em;
+      color: var(--teal); border: 1px solid var(--border);
+      padding: 0.45rem 1.1rem; border-radius: 2rem;
+      background: rgba(0,198,174,0.06);
+    }
+    .scroll-hint {
+      position: absolute; bottom: 2.5rem; left: clamp(1.5rem, 8vw, 8rem);
+      font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.2em;
+      color: var(--text-muted); text-transform: uppercase;
+      display: flex; align-items: center; gap: 0.8rem; animation: bob 2.5s ease-in-out infinite;
+    }
+    .scroll-hint::after { content: '↓'; font-size: 1rem; color: var(--teal); }
+    @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 8vw, 8rem);
+      max-width: 1200px; margin: 0 auto;
+    }
+    .section-label {
+      font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.28em;
+      color: var(--teal); text-transform: uppercase; margin-bottom: 0.8rem;
+    }
+    .section-title {
+      font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 300; color: var(--text-primary); margin-bottom: 3rem;
+      line-height: 1.15; position: relative; display: inline-block;
+    }
+    .section-title::after {
+      content: ''; position: absolute; bottom: -10px; left: 0;
+      width: 48px; height: 2px; background: var(--teal);
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1.6fr; gap: 4rem; align-items: start;
+    }
+    .about-photo-wrap {
+      position: relative;
+    }
+    .about-photo-wrap img {
+      width: 100%; aspect-ratio: 3/4; object-fit: cover;
+      border: 1px solid var(--border); filter: grayscale(20%) contrast(1.05);
+      transition: filter 0.4s;
+    }
+    .about-photo-wrap img:hover { filter: grayscale(0%) contrast(1.1); }
+    .about-photo-wrap::before {
+      content: ''; position: absolute; top: 12px; left: 12px; right: -12px; bottom: -12px;
+      border: 1px solid rgba(0,198,174,0.25); z-index: -1;
+    }
+    .about-text p { color: var(--text-muted); margin-bottom: 1.2rem; font-size: 1.02rem; }
+    .about-text p strong { color: var(--teal); font-weight: 500; }
+    .interests-list { list-style: none; margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.55rem; }
+    .interests-list li {
+      display: flex; align-items: center; gap: 0.8rem;
+      font-size: 0.92rem; color: var(--text-muted);
+    }
+    .interests-list li::before {
+      content: '›'; color: var(--teal); font-size: 1.2rem; line-height: 1;
+    }
+
+    /* ── PUBLICATION HIGHLIGHT ── */
+    .pub-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--teal);
+      border-radius: 4px;
+      padding: 2.4rem 2.8rem;
+      backdrop-filter: blur(10px);
+      position: relative; overflow: hidden;
+      margin-bottom: 2rem;
+    }
+    .pub-card::before {
+      content: '"'; font-family: var(--font-display); font-size: 8rem;
+      color: rgba(0,198,174,0.06); position: absolute; top: -1.5rem; right: 1.5rem;
+      line-height: 1; pointer-events: none;
+    }
+    .pub-journal {
+      font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.18em;
+      color: var(--teal); text-transform: uppercase; margin-bottom: 0.8rem;
+      display: flex; align-items: center; gap: 0.7rem;
+    }
+    .pub-journal .badge {
+      background: rgba(0,198,174,0.12); border: 1px solid var(--teal-dim);
+      padding: 0.2rem 0.65rem; border-radius: 2rem; font-size: 0.65rem;
+    }
+    .pub-title {
+      font-family: var(--font-display); font-size: clamp(1.2rem, 2.5vw, 1.55rem);
+      font-weight: 600; color: var(--text-primary); margin-bottom: 0.8rem;
+      line-height: 1.3;
+    }
+    .pub-authors {
+      font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.2rem;
+    }
+    .pub-authors strong { color: var(--gold); }
+    .pub-meta-row {
+      display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center;
+      margin-top: 1.2rem;
+    }
+    .pub-meta-item {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-family: var(--font-mono); font-size: 0.74rem; color: var(--text-muted);
+    }
+    .pub-meta-item span { color: var(--teal); }
+    .pub-doi-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(0,198,174,0.1); border: 1px solid var(--border);
+      padding: 0.5rem 1.1rem; border-radius: 3px;
+      font-family: var(--font-mono); font-size: 0.74rem; color: var(--teal);
+      text-decoration: none; transition: all 0.2s; margin-top: 1.2rem;
+    }
+    .pub-doi-link:hover { background: rgba(0,198,174,0.2); border-color: var(--teal); }
+
+    /* ── CITE METRICS ── */
+    .metrics-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1.2rem; margin-top: 2.5rem;
+    }
+    .metric-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 4px; padding: 1.8rem 1.5rem; text-align: center;
+      backdrop-filter: blur(8px); transition: border-color 0.25s, transform 0.25s;
+    }
+    .metric-card:hover { border-color: var(--teal); transform: translateY(-3px); }
+    .metric-value {
+      font-family: var(--font-display); font-size: 2.8rem; font-weight: 700;
+      color: var(--teal); line-height: 1; margin-bottom: 0.5rem;
+    }
+    .metric-label {
+      font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.18em;
+      color: var(--text-muted); text-transform: uppercase;
+    }
+    .metrics-note {
+      font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted);
+      margin-top: 1.2rem; display: flex; align-items: center; gap: 0.5rem;
+    }
+    .metrics-note::before { content: '※'; color: var(--teal); }
+
+    /* ── EXPERIENCE TIMELINE ── */
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 0.5rem; bottom: 0.5rem;
+      width: 1px; background: linear-gradient(180deg, var(--teal), var(--teal-dim), transparent);
+    }
+    .timeline-item {
+      position: relative; margin-bottom: 2.8rem; padding-left: 1.5rem;
+    }
+    .timeline-item::before {
+      content: ''; position: absolute; left: -2.35rem; top: 0.55rem;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--teal); box-shadow: 0 0 12px var(--teal);
+    }
+    .timeline-period {
+      font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.15em;
+      color: var(--teal); margin-bottom: 0.35rem;
+    }
+    .timeline-role {
+      font-family: var(--font-display); font-size: 1.2rem; font-weight: 600;
+      color: var(--text-primary); margin-bottom: 0.2rem;
+    }
+    .timeline-org { font-size: 0.92rem; color: var(--text-muted); }
+
+    /* ── AWARDS ── */
+    .awards-list { display: flex; flex-direction: column; gap: 1.2rem; }
+    .award-item {
+      display: flex; gap: 1.8rem; align-items: flex-start;
+      padding: 1.4rem 1.8rem;
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 4px; backdrop-filter: blur(8px);
+      transition: border-color 0.25s;
+    }
+    .award-item:hover { border-color: rgba(0,198,174,0.4); }
+    .award-year {
+      font-family: var(--font-mono); font-size: 0.82rem; color: var(--gold);
+      min-width: 42px; padding-top: 0.1rem; font-weight: 500;
+    }
+    .award-text { font-size: 0.95rem; color: var(--text-muted); }
+    .award-text strong { color: var(--text-primary); display: block; margin-bottom: 0.15rem; }
+
+    /* ── SKILLS ── */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+    .skill-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 4px; padding: 1.6rem 1.8rem;
+      backdrop-filter: blur(8px);
+    }
+    .skill-category {
+      font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.2em;
+      color: var(--teal); text-transform: uppercase; margin-bottom: 0.8rem;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .skill-tag {
+      font-size: 0.82rem; color: var(--text-muted);
+      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+      padding: 0.28rem 0.75rem; border-radius: 2rem; transition: all 0.2s;
+    }
+    .skill-tag:hover { color: var(--teal); border-color: var(--teal-dim); }
+
+    /* ── OCEANVIBES ── */
+    .oceanvibes-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 4px; padding: 2rem 2.4rem;
+      backdrop-filter: blur(10px);
+      display: flex; gap: 2rem; align-items: center;
+    }
+    .oceanvibes-icon {
+      font-family: var(--font-display); font-size: 3.5rem;
+      color: var(--teal); line-height: 1; min-width: fit-content;
+    }
+    .oceanvibes-body h3 {
+      font-family: var(--font-display); font-size: 1.4rem; font-weight: 600;
+      color: var(--text-primary); margin-bottom: 0.4rem;
+    }
+    .oceanvibes-body p { font-size: 0.92rem; color: var(--text-muted); margin-bottom: 0.9rem; }
+    .oceanvibes-link {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      font-family: var(--font-mono); font-size: 0.74rem; color: var(--teal);
+      text-decoration: none; border-bottom: 1px solid var(--teal-dim);
+      padding-bottom: 2px; transition: border-color 0.2s;
+    }
+    .oceanvibes-link:hover { border-color: var(--teal); }
+
+    /* ── CONTACT / FOOTER ── */
+    .footer-section {
+      padding: 4rem clamp(1.5rem, 8vw, 8rem) 3rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .footer-section h2 {
+      font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 300; font-style: italic; color: var(--text-primary); margin-bottom: 0.5rem;
+    }
+    .footer-quote {
+      font-family: var(--font-display); font-size: 1.15rem; font-style: italic;
+      color: var(--text-muted); margin-bottom: 2.5rem;
+    }
+    .contact-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+    .contact-btn {
+      font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.12em;
+      text-transform: uppercase; text-decoration: none;
+      padding: 0.75rem 1.8rem; border-radius: 3px; transition: all 0.25s;
+    }
+    .contact-btn.primary {
+      background: var(--teal); color: var(--ocean-deep); font-weight: 500;
+    }
+    .contact-btn.primary:hover { background: #00e0c8; }
+    .contact-btn.secondary {
+      border: 1px solid var(--border); color: var(--text-muted);
+    }
+    .contact-btn.secondary:hover { border-color: var(--teal); color: var(--teal); }
+    .copyright {
+      font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-muted);
+      margin-top: 3rem; letter-spacing: 0.08em;
+    }
+
+    /* ── DIVIDER ── */
+    .wave-divider { width: 100%; height: 1px; background: var(--border); margin: 0; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .about-photo-wrap { max-width: 280px; }
+      .nav-links { display: none; }
+      .oceanvibes-card { flex-direction: column; gap: 1rem; }
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-in {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+  </style>
 </head>
-
 <body>
 
 <!-- Navigation -->
-<div class="main-nav">
-    <div class="container">
-        <header class="group top-nav">
-            <div class="navigation-toggle" data-tools="navigation-toggle" data-target="#navbar">
-                <span class="logo">ASISH</span>
-            </div>
-            <nav id="navbar" class="navbar item-nav">
-                <ul>
-                    <li class="active"><a href="#about">About</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#achievements">Achievements</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                </ul>
-            </nav>
-        </header>
-    </div>
+<nav>
+  <a class="nav-logo" href="#">Asish K. Sasidharan</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#achievements">Awards</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#oceanvibes">Outreach</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-tag">Physical Oceanographer</div>
+  <h1>Asish K.<br><em>Sasidharan</em></h1>
+  <p class="hero-subtitle">Exploring the Bay of Bengal, one profile at a time.</p>
+  <div class="hero-meta">
+    <span class="hero-pill">INCOIS · Hyderabad</span>
+    <span class="hero-pill">Senior Research Fellow</span>
+    <span class="hero-pill">JGR: Oceans · 2026</span>
+  </div>
+  <div class="scroll-hint">Scroll to explore</div>
 </div>
+
+<div class="wave-divider"></div>
 
 <!-- About -->
-<div class="intro section" id="about">
-    <div class="container">
-        <div class="units-row units-split wrap">
-            <div class="unit-20">
-                <img src="img/pp.jpg" alt="Asish K Sasidharan">
-            </div>
-            <div class="unit-80">
-                <h1>Let’s Explore the Ocean</h1>
-
-                <h2>About Me</h2>
-                <p>
-                    I am an <span class="highlight">Ocean Science enthusiast</span> specializing in 
-                    <span class="highlight">physical oceanography, machine learning, and ocean observations</span>.
-                    Currently, I work as a <span class="highlight">Senior Research Fellow at INCOIS, Hyderabad</span>
-                    in the Ocean Observation Network Group.
-                </p>
-
-                <p>
-                    My research focuses on <span class="highlight">freshwater intrusion, ocean mixing, and salinity
-                    variability in the Bay of Bengal</span>, integrating 
-                    <span class="highlight">remote sensing, in-situ observations, and numerical modeling</span>.
-                </p>
-
-                <p>
-                    I apply <span class="highlight">unsupervised machine learning techniques</span> such as 
-                    <span class="highlight">Gaussian Mixture Models (GMM)</span> to classify oceanographic profiles
-                    and understand upper-ocean processes.
-                </p>
-
-                <p>
-                    I was awarded <span class="highlight">1st Prize at OSICON 2025 (Goa)</span> for my poster titled
-                    <span class="highlight">“Unsupervised Classification of Freshwater Profiles in the Bay of Bengal”</span>.
-                </p>
-
-                <h3>Research Interests</h3>
-                <ul>
-                    <li>Freshwater dynamics & ocean mixing</li>
-                    <li>Machine learning applications in oceanography</li>
-                    <li>Upper-ocean numerical modeling (PWP, KPP)</li>
-                    <li>Cyclone impact & disaster risk analysis</li>
-                    <li>Ocean observing system design</li>
-                </ul>
-            </div>
-        </div>
+<section id="about">
+  <div class="fade-in">
+    <div class="section-label">01 / About</div>
+    <h2 class="section-title">Ocean Scientist</h2>
+  </div>
+  <div class="about-grid fade-in">
+    <div class="about-photo-wrap">
+      <img src="img/pp.jpg" alt="Asish K Sasidharan" onerror="this.style.background='#0b2340';this.style.minHeight='320px'">
     </div>
-</div>
+    <div class="about-text">
+      <p>I am an <strong>Ocean Science enthusiast</strong> specialising in <strong>physical oceanography, machine learning, and ocean observations</strong>. Currently, I work as a <strong>Senior Research Fellow at INCOIS, Hyderabad</strong> within the Ocean Observation Network Group.</p>
+      <p>My research focuses on <strong>freshwater intrusion, ocean mixing, and salinity variability in the Bay of Bengal</strong>, integrating <strong>remote sensing, in-situ observations, and numerical modeling</strong>.</p>
+      <p>I apply <strong>unsupervised machine learning techniques</strong> — particularly <strong>Gaussian Mixture Models (GMM)</strong> — to classify oceanographic profiles and elucidate upper-ocean processes.</p>
+      <p>I was awarded <strong>1st Prize at OSICON 2025 (Goa)</strong> for my poster on <em>"Unsupervised Classification of Freshwater Profiles in the Bay of Bengal"</em>.</p>
+      <ul class="interests-list">
+        <li>Freshwater dynamics &amp; ocean mixing</li>
+        <li>Machine learning applications in oceanography</li>
+        <li>Upper-ocean numerical modeling (PWP, KPP)</li>
+        <li>Cyclone impact &amp; disaster risk analysis</li>
+        <li>Ocean observing system design</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="wave-divider"></div>
+
+<!-- Publications -->
+<section id="publications">
+  <div class="fade-in">
+    <div class="section-label">02 / Publications</div>
+    <h2 class="section-title">Research Articles</h2>
+  </div>
+
+  <!-- Featured Publication -->
+  <div class="pub-card fade-in">
+    <div class="pub-journal">
+      Journal of Geophysical Research: Oceans
+      <span class="badge">Full Access</span>
+      <span class="badge">Research Article</span>
+    </div>
+    <div class="pub-title">
+      Deciphering the Freshening-Driven Thermohaline Evolution in the Bay of Bengal via Unsupervised Classification
+    </div>
+    <div class="pub-authors">
+      <strong>Asish K. Sasidharan</strong>, B. Rohith, B. Praveen Kumar
+    </div>
+    <div style="font-size:0.9rem;color:var(--text-muted);">
+      First published: <strong style="color:var(--text-primary)">24 April 2026</strong> &nbsp;·&nbsp; AGU Publications
+    </div>
+    <div class="pub-meta-row">
+      <div class="pub-meta-item"><span>DOI</span> 10.1029/2025JC023587</div>
+      <div class="pub-meta-item"><span>Publisher</span> American Geophysical Union</div>
+      <div class="pub-meta-item"><span>Year</span> 2026</div>
+    </div>
+    <a class="pub-doi-link" href="https://doi.org/10.1029/2025JC023587" target="_blank" rel="noopener">
+      ↗ View on Wiley Online Library &nbsp;·&nbsp; doi:10.1029/2025JC023587
+    </a>
+  </div>
+
+  <!-- Citation Metrics -->
+  <div class="fade-in">
+    <div class="section-label" style="margin-top:2.5rem;">Citation Metrics</div>
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-value">1</div>
+        <div class="metric-label">Publications</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">Q1</div>
+        <div class="metric-label">Journal Quartile</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">IF</div>
+        <div class="metric-label">~3.8 (JGR: Oceans)</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">AGU</div>
+        <div class="metric-label">Publisher</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">2026</div>
+        <div class="metric-label">Published Year</div>
+      </div>
+    </div>
+    <div class="metrics-note">
+      Citation counts will update as the article accrues citations on Google Scholar, Scopus, and Web of Science.
+    </div>
+  </div>
+</section>
+
+<div class="wave-divider"></div>
 
 <!-- Experience -->
-<div class="work section second" id="experience">
-    <div class="container">
-        <h1>Experience</h1>
-
-        <ul class="work-list">
-            <li>2022 – Present</li>
-            <li>INCOIS, Hyderabad</li>
-            <li>Senior Research Fellow</li>
-        </ul>
-
-        <ul class="work-list">
-            <li>2018 – 2020</li>
-            <li>CSIR–NIO, Mumbai</li>
-            <li>Project Assistant-II</li>
-        </ul>
-
-        <ul class="work-list">
-            <li>2015 – 2016</li>
-            <li>NCPOR, Goa</li>
-            <li>Dissertation Student</li>
-        </ul>
+<section id="experience">
+  <div class="fade-in">
+    <div class="section-label">03 / Experience</div>
+    <h2 class="section-title">Career Timeline</h2>
+  </div>
+  <div class="timeline fade-in">
+    <div class="timeline-item">
+      <div class="timeline-period">2022 – Present</div>
+      <div class="timeline-role">Senior Research Fellow</div>
+      <div class="timeline-org">INCOIS (Indian National Centre for Ocean Information Services), Hyderabad</div>
     </div>
-</div>
-
-<!-- Achievements & Education -->
-<div class="award section second" id="achievements">
-    <div class="container">
-        <h1>Awards & Education</h1>
-
-        <ul class="award-list list-flat">
-            <li>2025</li>
-            <li>Best Poster Award – OSICON (Physical Oceanography)</li>
-        </ul>
-
-        <ul class="award-list list-flat">
-            <li>2020</li>
-            <li>GATE Qualified</li>
-        </ul>
-
-        <ul class="award-list list-flat">
-            <li>2017</li>
-            <li>M.Sc. Oceanography – CUSAT</li>
-        </ul>
-
-        <ul class="award-list list-flat">
-            <li>2015</li>
-            <li>B.Sc. Physics – MG University</li>
-        </ul>
+    <div class="timeline-item">
+      <div class="timeline-period">2018 – 2020</div>
+      <div class="timeline-role">Project Assistant – II</div>
+      <div class="timeline-org">CSIR – National Institute of Oceanography, Mumbai</div>
     </div>
-</div>
+    <div class="timeline-item">
+      <div class="timeline-period">2015 – 2016</div>
+      <div class="timeline-role">Dissertation Student</div>
+      <div class="timeline-org">National Centre for Polar and Ocean Research (NCPOR), Goa</div>
+    </div>
+  </div>
+</section>
+
+<div class="wave-divider"></div>
+
+<!-- Awards & Education -->
+<section id="achievements">
+  <div class="fade-in">
+    <div class="section-label">04 / Awards &amp; Education</div>
+    <h2 class="section-title">Recognition</h2>
+  </div>
+  <div class="awards-list fade-in">
+    <div class="award-item">
+      <div class="award-year">2026</div>
+      <div class="award-text">
+        <strong>Research Publication – JGR: Oceans (AGU)</strong>
+        Deciphering the Freshening-Driven Thermohaline Evolution in the Bay of Bengal via Unsupervised Classification. doi:10.1029/2025JC023587
+      </div>
+    </div>
+    <div class="award-item">
+      <div class="award-year">2025</div>
+      <div class="award-text">
+        <strong>Best Poster Award – OSICON 2025 (Goa)</strong>
+        1st Prize in Physical Oceanography for "Unsupervised Classification of Freshwater Profiles in the Bay of Bengal"
+      </div>
+    </div>
+    <div class="award-item">
+      <div class="award-year">2020</div>
+      <div class="award-text">
+        <strong>GATE Qualified</strong>
+        Graduate Aptitude Test in Engineering
+      </div>
+    </div>
+    <div class="award-item">
+      <div class="award-year">2017</div>
+      <div class="award-text">
+        <strong>M.Sc. Oceanography</strong>
+        Cochin University of Science and Technology (CUSAT)
+      </div>
+    </div>
+    <div class="award-item">
+      <div class="award-year">2015</div>
+      <div class="award-text">
+        <strong>B.Sc. Physics</strong>
+        Mahatma Gandhi University (MG University)
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wave-divider"></div>
 
 <!-- Skills -->
-<div class="skills section second" id="skills">
-    <div class="container">
-        <h1>Skills</h1>
-
-        <ul class="skill-list list-flat">
-            <li>Programming</li>
-            <li>Python, MATLAB, Ferret, GMT</li>
-        </ul>
-
-        <ul class="skill-list list-flat">
-            <li>Modeling & Instruments</li>
-            <li>PWP, KPP, MIKE, ROMS, CTD, ADCP</li>
-        </ul>
-
-        <ul class="skill-list list-flat">
-            <li>Web</li>
-            <li>HTML, CSS, JavaScript</li>
-        </ul>
+<section id="skills">
+  <div class="fade-in">
+    <div class="section-label">05 / Skills</div>
+    <h2 class="section-title">Technical Expertise</h2>
+  </div>
+  <div class="skills-grid fade-in">
+    <div class="skill-card">
+      <div class="skill-category">Programming</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">MATLAB</span>
+        <span class="skill-tag">Ferret</span>
+        <span class="skill-tag">GMT</span>
+      </div>
     </div>
-</div>
-
-<!-- Quote -->
-<div class="quote">
-    <div class="container text-centered">
-        <h1>Never Settle. Never Give Up.</h1>
+    <div class="skill-card">
+      <div class="skill-category">Ocean Modeling</div>
+      <div class="skill-tags">
+        <span class="skill-tag">PWP</span>
+        <span class="skill-tag">KPP</span>
+        <span class="skill-tag">MIKE</span>
+        <span class="skill-tag">ROMS</span>
+      </div>
     </div>
-</div>
-
-<!-- Footer -->
-<footer>
-    <div class="container">
-        <div class="units-row">
-            <div class="unit-50">
-                <p>© Asish K Sasidharan</p>
-            </div>
-            <div class="unit-50">
-                <ul class="social list-flat right">
-                    <li><a href="mailto:asishksasidharan@gmail.com"><i class="fa fa-envelope"></i></a></li>
-                    <li><a href="https://twitter.com/KsAsish"><i class="fa fa-twitter"></i></a></li>
-                </ul>
-            </div>
-        </div>
+    <div class="skill-card">
+      <div class="skill-category">Instruments &amp; Obs.</div>
+      <div class="skill-tags">
+        <span class="skill-tag">CTD</span>
+        <span class="skill-tag">ADCP</span>
+        <span class="skill-tag">Argo Floats</span>
+        <span class="skill-tag">Remote Sensing</span>
+      </div>
     </div>
+    <div class="skill-card">
+      <div class="skill-category">Machine Learning</div>
+      <div class="skill-tags">
+        <span class="skill-tag">GMM</span>
+        <span class="skill-tag">Clustering</span>
+        <span class="skill-tag">Profile Classification</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-category">Web</div>
+      <div class="skill-tags">
+        <span class="skill-tag">HTML</span>
+        <span class="skill-tag">CSS</span>
+        <span class="skill-tag">JavaScript</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wave-divider"></div>
+
+<!-- Oceanvibes Outreach -->
+<section id="oceanvibes">
+  <div class="fade-in">
+    <div class="section-label">06 / Science Outreach</div>
+    <h2 class="section-title">Oceanvibes</h2>
+  </div>
+  <div class="oceanvibes-card fade-in">
+    <div class="oceanvibes-icon">〜</div>
+    <div class="oceanvibes-body">
+      <h3>Oceanvibes.org — Explore the Spirit of Oceans</h3>
+      <p>A non-profit scientific community platform founded to bridge ocean science and public awareness. Oceanvibes publishes articles, news, and educational content on marine science, ocean observations, and the wonder of the deep sea. It reflects a commitment to making oceanography accessible beyond the academic world.</p>
+      <a class="oceanvibes-link" href="https://asishksasidharan.github.io/oceanvibes.github.io/" target="_blank" rel="noopener">
+        Visit Oceanvibes.org ↗
+      </a>
+      &nbsp;&nbsp;
+      <a class="oceanvibes-link" href="https://asishksasidharan.github.io/oceanvibes.github.io/blog.html" target="_blank" rel="noopener">
+        Articles ↗
+      </a>
+      &nbsp;&nbsp;
+      <a class="oceanvibes-link" href="https://facebook.com/oceanvibes" target="_blank" rel="noopener">
+        Facebook ↗
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="wave-divider"></div>
+
+<!-- Footer / Contact -->
+<footer class="footer-section">
+  <h2>Let's Connect</h2>
+  <p class="footer-quote">"Never Settle. Never Give Up."</p>
+  <div class="contact-links">
+    <a class="contact-btn primary" href="mailto:asishksasidharan@gmail.com">Email Me</a>
+    <a class="contact-btn secondary" href="https://twitter.com/KsAsish" target="_blank" rel="noopener">Twitter / X</a>
+    <a class="contact-btn secondary" href="https://doi.org/10.1029/2025JC023587" target="_blank" rel="noopener">Latest Paper ↗</a>
+    <a class="contact-btn secondary" href="https://asishksasidharan.github.io/oceanvibes.github.io/" target="_blank" rel="noopener">Oceanvibes ↗</a>
+  </div>
+  <p class="copyright">© Asish K Sasidharan · INCOIS, Hyderabad · 2026</p>
 </footer>
 
-<script src="js/jquery.min.js"></script>
-<script src="js/kube.min.js"></script>
-
+<script>
+  // Intersection observer for fade-in animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
